@@ -68,6 +68,7 @@ export function useCostCalculator() {
   })
 
   const clearCalculation = () => {
+    documentCount.value = 100000
     selectedEnrichments.value = []
   }
 
