@@ -7,8 +7,11 @@
       <input
         id="document-count"
         type="text"
+        inputmode="numeric"
         :value="formattedValue"
         @input="handleInput"
+        @keypress="preventNonNumeric"
+        @paste="handlePaste"
         class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
         :class="{ 'border-red-500 focus:ring-red-500 focus:border-red-500': modelValue === 0 }"
         placeholder="100,000"
@@ -63,6 +66,23 @@ const handleInput = (event: Event) => {
   const numericValue = target.value.replace(/\D/g, '')
   const value = parseInt(numericValue) || 0
   
+  emit('update:modelValue', value)
+}
+
+const preventNonNumeric = (event: KeyboardEvent) => {
+  // Allow only digits (0-9)
+  const char = event.key
+  if (!/[0-9]/.test(char)) {
+    event.preventDefault()
+  }
+}
+
+const handlePaste = (event: ClipboardEvent) => {
+  event.preventDefault()
+  const pastedText = event.clipboardData?.getData('text') || ''
+  // Remove all non-digit characters from pasted content
+  const numericValue = pastedText.replace(/\D/g, '')
+  const value = parseInt(numericValue) || 0
   emit('update:modelValue', value)
 }
 
