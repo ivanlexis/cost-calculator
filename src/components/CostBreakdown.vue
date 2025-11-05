@@ -12,7 +12,7 @@
         </span>
       </div>
       
-      <div v-if="breakdown.enrichmentCosts.length > 0" class="space-y-2 pt-2 border-t">
+      <div v-if="breakdown.enrichmentCosts.length > 0" class="space-y-2">
         <div
           v-for="enrichment in breakdown.enrichmentCosts"
           :key="enrichment.type"
