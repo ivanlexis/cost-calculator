@@ -5,14 +5,13 @@
     </h2>
     
     <div class="space-y-3">
-      <div class="flex justify-between items-center text-sm">
-        <span class="text-gray-600">Platform Fee (Re-enrichment):</span>
-        <span class="font-medium text-gray-900">
-          ${{ breakdown.platformFee.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
-        </span>
-      </div>
-      
       <div v-if="breakdown.enrichmentCosts.length > 0" class="space-y-2">
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-600">Platform Fee (Re-enrichment):</span>
+          <span class="font-medium text-gray-900">
+            ${{ breakdown.platformFee.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+          </span>
+        </div>
         <div
           v-for="enrichment in breakdown.enrichmentCosts"
           :key="enrichment.type"
